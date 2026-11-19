@@ -1,12 +1,20 @@
 # Asset pipeline scaffold
 
-[![checks](https://github.com/Osoito/asset-pipeline/actions/workflows/checks.yml/badge.svg)](https://github.com/Osoito/asset-pipeline/actions/workflows/checks.yml)
-
 A four-file skeleton for any project that maps N pieces of material onto M slots. Audio clips onto sound effects, tracks onto music slots, images onto placements, copy variants onto positions.
 
 It came out of two Binding of Isaac mods I shipped to the Steam Workshop, a [music mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3787641648) at 16 masters over 85 slots and a [sound effect mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3798883789) at 43 clips over the 590 slots it started from, 673 by release. Both went wrong in the same way before they went right. So the order of the steps below is the actual content of this repository. The code is small. The sequence is the part that was expensive to learn.
 
 Copy `build/` into the project and work in this order.
+
+## What you can take from this
+
+**The sequence, which is the whole point.** Count and say the ratio out loud, write the constraints down and confirm them before generating anything, ship a decision surface before any other pipeline work, sample before bulk, and turn every stated constraint into a check that fails the build. Both mods went wrong by doing those in a different order.
+
+**Constraints as executable checks, in [`build/mapping.py`](build/mapping.py).** `validate()` is pure data in, problems out, with no I/O, and every build script calls it. A rule that lives in a document is gone by the next working session. A rule that fails the build is not.
+
+**[`build/selftest.py`](build/selftest.py) proves the checks fire.** Seven cases, each reintroducing a defect that actually reached a listener before the matching check existed. Without this a check can quietly stop working and nothing notices.
+
+**[`build/audition.py`](build/audition.py) renders the decision surface.** One self-contained HTML file, stable numbering, the original against its replacement, playable or viewable in place. The numbering is the interface: feedback comes back as "16 should sound angrier", and renumbering invalidates every instruction already given.
 
 ## Running it
 
@@ -66,3 +74,5 @@ The seven cases in `selftest.py` are the real defects that reached a listener be
 ## Notes
 
 This is a scaffold, so `mapping.py` ships empty on purpose. `python build/verify.py` on a fresh copy exits non-zero and tells you step 1 has not been done yet.
+
+This came out of two mods, written up the same way. [isaac-voice-sfx-pipeline](https://github.com/Osoito/isaac-voice-sfx-pipeline) and [isaac-chiikawa-soundtrack](https://github.com/Osoito/isaac-chiikawa-soundtrack). A third, [yukkuri-toolbar-presets](https://github.com/Osoito/yukkuri-toolbar-presets), mods a closed HSP3 game by reading its process memory.
