@@ -1,5 +1,7 @@
 # Asset pipeline scaffold
 
+[![checks](https://github.com/Osoito/asset-pipeline/actions/workflows/checks.yml/badge.svg)](https://github.com/Osoito/asset-pipeline/actions/workflows/checks.yml)
+
 A four-file skeleton for any project that maps N pieces of material onto M slots. Audio clips onto sound effects, tracks onto music slots, images onto placements, copy variants onto positions.
 
 It came out of two Binding of Isaac mods I shipped to the Steam Workshop, a [music mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3787641648) at 16 masters over 85 slots and a [sound effect mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3798883789) at 43 clips over the 590 slots it started from, 673 by release. Both went wrong in the same way before they went right. So the order of the steps below is the actual content of this repository. The code is small. The sequence is the part that was expensive to learn.

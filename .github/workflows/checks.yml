@@ -1,0 +1,27 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Reintroduces each of the seven real defects and proves the matching
+      # check in mapping.validate() fires. A repository whose argument is that
+      # checks belong in code runs its own checks on every push.
+      - name: Prove every check fires
+        run: python build/selftest.py
+
+      - name: Render the demo decision surface
+        run: python build/audition.py --demo
+
+      # verify.py is deliberately not run here. The scaffold ships with an empty
+      # mapping, so it exits non-zero by design until step 1 of the README is done.
