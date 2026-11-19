@@ -1,6 +1,6 @@
-# Asset pipeline scaffold
+# Slot assignment scaffold
 
-[![checks](https://github.com/Osoito/asset-pipeline/actions/workflows/checks.yml/badge.svg)](https://github.com/Osoito/asset-pipeline/actions/workflows/checks.yml)
+[![checks](https://github.com/Osoito/slot-assignment-scaffold/actions/workflows/checks.yml/badge.svg)](https://github.com/Osoito/slot-assignment-scaffold/actions/workflows/checks.yml)
 
 A four-file skeleton for any project that maps N pieces of material onto M slots. Audio clips onto sound effects, tracks onto music slots, images onto placements, copy variants onto positions.
 
